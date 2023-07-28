@@ -1,0 +1,324 @@
+User
+  -userId (Long) (pk)
+  -loginId (String) (unique)
+  -password (String) (encrypted)
+  -userType (fk)
+  -firstname (String)
+  -lastname (String)
+  -middlename (String)
+  -imageDoc (fk)
+  -email (String)
+  -mobile (String)
+  -dob (localDate)
+  -namePrefix (fk) 
+  -failedLoginAttempt (short)
+  -gender (fk)
+  -isAccountLocked (boolean)
+  -accountLockedOn (LocalDateTime)
+  -lastLoginIpAddress(String)
+  -lastLoginDate (LocalDateTime)
+  -isPasswordChanged (boolean)
+  -passwordExpiryDate (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+  -createdOn (localDateTime)
+  -modifiedByUser (fk) (UserHistory)
+  -modifiedOn (localDateTime)
+  -activatedOn (localDateTime)
+  -activatedByUser (fk) (UserHistory)
+  -deActivatedOn (localDateTime)
+  -deActivatedByUser (fk) (UserHistory)
+  -remarks (String)
+  -isActive (boolean)
+  -List<Social> (fk)
+  -employementDetails (fk)
+  -Address (fk)
+  -List<academicQualification> (fk)
+  -List<professionalAffiliation> (fk)
+  -resumeDoc (fk)
+  
+userHistory
+  -userHistoryId (Long) (pk)
+  -user (fk)
+  -loginId (String) (unique)
+  -password (String) (encrypted)
+  -userType (fk)
+  -firstname (String)
+  -lastname (String)
+  -middlename (String)
+  -imageDoc (fk)
+  -email (String)
+  -mobile (String)
+  -dob (localDate)
+  -namePrefix (fk) 
+  -gender (fk)
+  -createdByUser (fk) (UserHistory)
+  -createdOn (localDateTime)
+  -modifiedByUser (fk) (UserHistory)
+  -modifiedOn (localDateTime)
+  -activatedOn (localDateTime)
+  -activatedByUser (fk) (UserHistory)
+  -deActivatedOn (localDateTime)
+  -deActivatedByUser (fk) (UserHistory)
+  -remarks (String)
+  -List<Social> (fk)
+  -employementDetails (fk)
+  -Address (fk)
+  -List<academicQualification> (fk)
+  -List<professionalAffiliation> (fk)
+  -resumeDoc (fk)
+  
+company
+  -companyId (Long) (pk)
+  -companyName (String)
+  -website (String)
+  -breifBioData (String)
+  -StaffInsightRegNo (String) 
+  -createdByUser (fk)
+  -createdOn (localDateTime) (UserHistory)
+  -modifiedByUser (fk)
+  -modifiedOn (localDateTime) (UserHistory)
+  -isActive (boolean)
+  -List<Social> (fk)
+  -orgType (fk)
+  -companyType (fk)
+  -businessCategory (fk)
+  -List<companyBranch> (fk)
+  
+companyHistory
+  -companyHistoryId (Long) (pk)
+  -company (fk)
+  -companyName (String)
+  -website (String)
+  -breifBioData (String)
+  -StaffInsightRegNo (String) 
+  -createdByUser (fk)
+  -createdOn (localDateTime) (UserHistory)
+  -modifiedByUser (fk)
+  -modifiedOn (localDateTime) (UserHistory)
+  -List<Social> (fk)
+  -orgType (fk)
+  -companyType (fk)
+  -businessCategory (fk)
+  -List<companyBranch> (fk)
+  
+companyBranch
+  -companyBranchId (Long) (pk)
+  -branchName (String)
+  -company (fk)
+  -branchType (fk)
+  -createdByUser (fk) (UserHistory)
+  -createdOn (localDateTime)
+  -modifiedByUser (fk) (UserHistory)
+  -modifiedOn (localDateTime)
+  -isActive (boolean)
+  -Address (fk)
+  -email (String)
+  -mobile (String)
+  
+companyBranchHistory
+  -companyBranchHistoryId (Long) (pk)
+  -companyBranch (fk)
+  -branchName (String)
+  -company (fk)
+  -branchType (fk)
+  -createdByUser (fk) (UserHistory)
+  -createdOn (localDateTime)
+  -modifiedByUser (fk) (UserHistory)
+  -modifiedOn (localDateTime)
+  -Address (fk)
+  -email (String)
+  -mobile (String)
+
+AcademicQualification  
+  -academicQualificationId (Long) (pk)
+  -qualification (String)
+  -institution (String)
+  -completionYear (Integer)
+  -degreeOrCertificateDoc (fk)
+  -user (fk)
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (userHistory)
+  
+DegreeOrCertificateDoc  
+  -degreeOrCertificateDocId (Long) (pk)
+  -academicQualification (fk)
+  -revisedFileName (String)
+  -actualFileName (String)
+  -filepath (String)
+  -documentSize (Bigdecimal)
+  -uploadedOn (LocalDateTime)
+  -uploadedByUser (fk) (UserHistory)
+  -isActive (Boolean)
+  
+ProfessionalAffiliation
+  -professionalAffiliationId (Long) (pk)
+  -organizationName (String)
+  -designation (fk)
+  -descriptionOfWork (String)
+  -EmploymentType (fk)
+  -joinedDate (LocalDate)
+  -leaveDate (LocalDate)
+  -List<paySlipDoc> (fk)
+  -experienceLetterDoc (fk)
+  -user (fk)
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (userHistory)
+  
+ExperienceLetterDoc
+  -experienceLetterDocId (Long) (pk)
+  -ProfessionalExperience (fk)
+  -revisedFileName (String)
+  -actualFileName (String)
+  -filepath (String)
+  -documentSize (Bigdecimal)
+  -uploadedOn (LocalDateTime)
+  -uploadedByUser (fk) (userHistory)
+  -isActive (Boolean)
+  
+paySlipDoc  
+  -paySlipDocId (Long) (pk)
+  -ProfessionalExperience (fk)
+  -revisedFileName (String)
+  -actualFileName (String)
+  -filepath (String)
+  -documentSize (Bigdecimal)
+  -uploadedOn (LocalDateTime)
+  -uploadedByUser (fk) (userHistory)
+  -isActive (Boolean)
+  
+imageDoc
+  -imageDocId (Long) (pk)
+  -user (fk)
+  -revisedFileName (String)
+  -actualFileName (String)
+  -filepath (String)
+  -documentSize (Bigdecimal)
+  -uploadedOn (LocalDateTime)
+  -uploadedByUser (fk) (userHistory)
+  -isActive (Boolean)
+
+resumeDoc
+    -resumeDocId
+    -user
+    -revisedFileName
+    -actualFileName
+    -filePath
+    -documentSize
+    -uploadedOn
+    -uploadedBy
+    -isActive
+  
+branchType
+  -branchTypeId (Long) (pk)
+  -branchType (String) - registered office, corporate office, branch office
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+  
+businessCategory  
+  -businessCategoryId (Long) (pk)
+  -businessCategory (String)
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+  
+companyType
+  -companyTypeId (Long) (pk)
+  -companyType --> private / public
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+  
+orgType
+  -orgTypeId (Long) (pk)
+  -orgType (String) --> partnership, firm, company
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+	
+UserType
+  -userTypeId (Long) (pk)
+  -userType (String) --> Admin / HR / Employee
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+
+NamePrefix
+  -namePrefixId (Long) (pk)
+  -namePrefix (String) --> Mr / Miss
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+
+Gender
+  -genderId (Long) (pk)
+  -gender (String)
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+
+EmployementDetails
+  -employmentDetailsId (Long) (pk)
+  -designation (fk)
+  -salary (Double)
+  -joinedDate (LocalDate)
+  -referredByUser (fk) - if referred by someone from same company
+  -employmentType (fk)
+  -companyBranch (fk)
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+
+designation
+  -designationId (Long) (pk)
+  -designation (String)
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+  
+WorkType
+  -workTypeId (Long) (pk)
+  -workType (String) - Remote, Onsite, Hybrid
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+
+EmploymentType
+  -employmentTypeId (Long) (pk)
+  -employmentType (String) - Full time,Part time, Freelance
+  -isActive (Boolean)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+
+Address
+  -addressId (Long) (pk)
+  -address (String)
+  -city (String)
+  -state (String)
+  -postalcode (String)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+  -isActive (boolean)
+
+Social
+  -socialId (Long) (pk)
+  -accountType (String)
+  -username (String)
+  -url (String)
+  -isActive (Boolean)
+  -belongsToUser (fk)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+
+DailyAttendance
+  -dailyAttendanceId (Long) (fk)
+  -User (fk)
+  -clock in (LocalDateTime)
+  -clock out (LocalDateTime)
+  -late (LocalDateTime)
+  -overtime (LocalDateTime)
+  -createdOn (LocalDateTime)
+  -createdByUser (fk) (UserHistory)
+  -isActive (boolean)
